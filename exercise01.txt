@@ -1,0 +1,10 @@
+Schreibe eine Klasse namens Sequenz, die
+  3 Anweisungen als Sequenz ausführt
+  
+  
+Schreibe eine Klasse namens Loop
+  Wiederhole eine Sequenz von mind. 2 Anweisungen
+  5 mal
+
+Verzweige in einer neuen Klasse namens Selection 
+  in der Wiedholung an einer beliebigen Stelle!
