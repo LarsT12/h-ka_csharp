@@ -13,4 +13,4 @@ Aufg. 3
   in Abhängigkeit der Laufvariable einer Wiederholung, s.o.,
   bei jeden Schleifendurchlauf entscheidet, 
   ob Sequenz A oder B ausgeführt werden wird.
-  Hier kann Lösung aus Aufg 2 als Basis verwendet werden.
+  Hier kann die Lösung aus Aufg. 2 als Basis verwendet werden.
