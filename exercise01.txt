@@ -1,10 +1,16 @@
-Schreibe eine Klasse namens Sequenz, die
+Aufg. 1
+  Schreibe eine Klasse namens "Sequenz", die
   3 Anweisungen als Sequenz ausführt
   
   
-Schreibe eine Klasse namens Loop
-  Wiederhole eine Sequenz von mind. 2 Anweisungen
-  5 mal
+Aufg. 2
+  Schreibe eine Klasse namens "Loop", die
+  eine Sequenz von mind. 2 Anweisungen
+  5 mal wiederholt
 
-Verzweige in einer neuen Klasse namens Selection 
-  in der Wiedholung an einer beliebigen Stelle!
+Aufg. 3
+  Schreibe eine Klasse namens "Selection", die
+  in Abhängigkeit der Laufvariable einer Wiederholung, s.o.,
+  bei jeden Schleifendurchlauf entscheidet, 
+  ob Sequenz A oder B ausgeführt werden wird.
+  Hier kann Lösung aus Aufg 2 als Basis verwendet werden.
