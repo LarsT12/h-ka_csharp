@@ -1,20 +1,12 @@
 Aufg. 1
-  Erstelle eine Klasse namens "Block" mit
-  einer Ausgabe zur Begrüßung.
+  Erstelle eine Klasse namens "MyList". Rufe in der Main-Methode die Methoden
+    - myArray
+    - myList
+  auf. Implementiere beide Methoden als void und ohne Parameter. Jede Methode soll auf der Console eine Ausgabe erzeugen, z.B. in dem sie ihren eigenen Namen ausgibt.
   
 Aufg. 2
-  Deklariere eine Variable j vom Typ int innerhalb der Main-Methode und initialisiere sie mit einem Wert.
-  Deklariere eine weitere Variable k vom Typ int innerhalb eines Blocks {}, den Sie in der Main-Methode erstellen.
-  Geben Sie in dem Block eine Berechnung (z.B. Multiplikation) der beiden Variablen j und k auf der Console aus.
+  Erstelle in der Methode myArray die Variable a vom Typ int als Array der Größe 10 und weiße in einer Schleife jedem Element einen Wert zu, z.B. die Position des Elements im Array selbst.
   
 Aufg. 3
-  Versuchen Sie dieselbe Berechnung außerhalb des Blocks auf der Console auszugeben und interpretieren Sie die Fehlermeldung, die beim Kompilieren erscheint.
-  
-Aufg. 4
-  Erklären Sie, wie sich die Sichtbarkeit von Variablen von innen nach außen verhält. Erklären Sie ebenfalls die Sichtbarkeit von Variablen von außen nach innen - betrachten Sie dazu die in Aufg. 2 durchgeführte Berechnung.
-
-Aufg. 5
-  Deklarieren Sie erneut die Variable j als static int außerhalb der Main-Methode, jedoch innerhalb der Klasse, und weise ihr einen Wert zu.
-  Erstellen Sie in der Main-Methode eine Verzweigung (Selektion), die in Abhängigkeit von j einen Block ausführt oder nicht. Analysieren Sie, welche Variable verwendet wird, die außerhalb der Main-Methode oder die innere?
-
-
+  Gib in einer weiteren Schleife die Werte des Arrays auf der Console aus.
+  Probiere zusätzlich die Ausgabe der Elemente mithilfe einer foreach-Anweisung.
