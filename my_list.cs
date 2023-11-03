@@ -15,7 +15,7 @@ class MyList {
       a[i] = i;
     }
 
-    for(int i = 0; i < a.Length) {
+    for(int i = 0; i < a.Length; i++) {
       Console.WriteLine(a[i]);
     }
     
@@ -26,6 +26,7 @@ class MyList {
   
   static void myList() {
     Console.WriteLine("myList");
+    
   }
 
 }
