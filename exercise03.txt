@@ -10,3 +10,13 @@ Aufg. 2
 Aufg. 3
   Gib in einer weiteren Schleife die Werte des Arrays auf der Console aus.
   Probiere zusätzlich die Ausgabe der Elemente mithilfe einer foreach-Anweisung.
+
+Aufg. 4
+  Erstelle in der Methode myList eine List-Variable, die int Werte aufnehmen kann. Füge der Variable direkt beim Initialisieren 3 beliebige int Werte hinzu.
+  
+Aufg. 5
+  Füge der Liste weitere zufällig gewählte Werte im Bereich 0 - 100 hinzu und nutze dafür die Random-Funktionalität von C#.
+  
+Aufg. 6
+  Gib die Werte der Liste in einer geeigneten Schleife auf der Console aus.
+  Gib danach zusätzlich den Wert des 3. Element der Liste aus.

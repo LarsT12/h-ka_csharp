@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 class MyList {
   static void Main() {
-    myArray();
+    // myArray();
     myList();
   }
   
@@ -16,7 +17,8 @@ class MyList {
     }
 
     for(int i = 0; i < a.Length; i++) {
-      Console.WriteLine(a[i]);
+      int b = a[i];
+      Console.WriteLine(b);
     }
     
     foreach(int b in a) {
@@ -26,7 +28,19 @@ class MyList {
   
   static void myList() {
     Console.WriteLine("myList");
+    Random z = new Random();
+    List<int> tickets = new List<int>() {32, 53, 23};
     
+    tickets.Add(z.Next(0, 100));
+    tickets.Add(z.Next(0, 100));
+    tickets.Add(z.Next(0, 100));
+    
+    // für jedes t in tickets mache folgendes:
+    foreach(int t in tickets) {
+      Console.WriteLine(t);
+    }
+    
+    Console.WriteLine(tickets[2]);
   }
 
 }
