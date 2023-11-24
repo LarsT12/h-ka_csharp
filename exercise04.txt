@@ -9,7 +9,7 @@ Aufg. 1
     initialisiere alle Objekte direkt, so dass die Initialisierung autom. beim Erzeugen des Objekts stattfindet. 
   - Gebäude (Klasse "Building"), u.a. mit der Eigenschaft "Name", die der University zugeordnet werden können
   - Räume (Klasse "Room"), die den Gebäuden zugeordnet werden können, mit den Eigenschaften 
-    Etage "Floor", Raunummer "Number" und "Seats" für die Anzahl der Plätze im Raum
+    Etage "Floor", Raumnummer "Number" und "Seats" für die Anzahl der Plätze im Raum
   - Unterrichtsklassen (Klasse "Klass") mit den Eigenschaften "Name" und "NumberOfStudents" für die Anzahl der Studierenden.
   - Lehrer*innen (Klass "Teacher") mit der Eigenschaft "Name"
   - Belegungsplan (Klasse "Schedule"), der für 

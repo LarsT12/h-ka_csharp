@@ -7,7 +7,7 @@ class Program {
 
     // Erstelle Gebäude, Räume, Klassen usw. ...
     Building building1 = university.AddBuilding(new Building { Name = "E" });
-    Room firstRoom = building1.AddRoom(floor: 1, number: 101, seats: 25);
+    Room firstRoom = building1.AddRoom(1, 101, 25);
     Room secondRoom = building1.AddRoom(floor: 1, number: 102, seats: 35);
     building1.AddRoom(floor: 1, number: 103, seats: 32);
 
@@ -18,7 +18,7 @@ class Program {
 
     // Beispielhafte Erstellung von Lehrern
     Teacher mueller = university.AddTeacher(new Teacher { Name = "Mueller" });
-    Teacher maier = university.AddTeacher(new Teacher { Name = "Schulze" });
+    Teacher schulze = university.AddTeacher(new Teacher { Name = "Schulze" });
 
     // Beispielhafte Erstellung von Klassen
     Klass mathKlass = university.AddKlass(new Klass { Name = "Math", NumberOfStudents = 25 });
@@ -26,7 +26,7 @@ class Program {
 
     // Beispielhafte Zuordnung von Veranstaltungen in den Belegungsplan
     university.Schedule.AddEvent(DayOfWeek.Monday, slot: 2, room: firstRoom, klass: mathKlass, teacher: mueller);
-    university.Schedule.AddEvent(DayOfWeek.Friday, slot: 0, room: firstRoom, klass: infKlass, teacher: maier);
+    university.Schedule.AddEvent(DayOfWeek.Friday, slot: 0, room: firstRoom, klass: infKlass, teacher: schulze);
     university.Schedule.AddEvent(DayOfWeek.Friday, slot: 0, room: secondRoom, klass: mathKlass, teacher: mueller);
 
     Console.WriteLine(university); // Gibt eine Zusammenfassung der Universität aus
@@ -39,10 +39,10 @@ class Program {
 
 class University {
   public string Name { get; }
-  public List<Building> Buildings { get; set; } = new List<Building>();
-  public List<Klass> Klasses { get; set; } = new List<Klass>();
-  public List<Teacher> Teachers { get; set; } = new List<Teacher>();
-  public Schedule Schedule { get; set; } = new Schedule();
+  public List<Building> Buildings { get; } = new List<Building>();
+  public List<Klass> Klasses { get; } = new List<Klass>();
+  public List<Teacher> Teachers { get; } = new List<Teacher>();
+  public Schedule Schedule { get; } = new Schedule();
 
   public Building AddBuilding(Building newBuilding) {
     Buildings.Add(newBuilding);
