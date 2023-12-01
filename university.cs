@@ -4,14 +4,15 @@ using System.Collections.Generic;
 class Program {
   static void Main(string[] args) {
     University university = new University("H-KA");
+    University kit = new University("KIT", "Keine Ahnung");
 
     // Erstelle Gebäude, Räume, Klassen usw. ...
-    Building building1 = university.AddBuilding(new Building { Name = "E" });
+    Building building1 = university.AddBuilding("E");
     Room firstRoom = building1.AddRoom(1, 101, 25);
     Room secondRoom = building1.AddRoom(floor: 1, number: 102, seats: 35);
     building1.AddRoom(floor: 1, number: 103, seats: 32);
 
-    Building building2 = university.AddBuilding(new Building { Name = "M" });
+    Building building2 = university.AddBuilding("M");
     building2.AddRoom(floor: 1, number: 101, seats: 30);
     building2.AddRoom(floor: 1, number: 102, seats: 32);
     building2.AddRoom(floor: 1, number: 103, seats: 28);
@@ -33,19 +34,60 @@ class Program {
 
     // Ausgabe des Belegungsplans in eine Textdatei
     System.IO.File.WriteAllText(@"Schedule.txt", university.Schedule.ToString());
+
+    // Beispiele Zugriff auf getter und setter bzw. auf die Properties von Objekten
+
+    kit.setAdresse("Hauptstraße 1");
+    Console.WriteLine(kit.getAdresse());
+    string erstadresse = kit.getAdresse();
+    Console.WriteLine(erstadresse);
+
+    string n = kit.Name;
+    kit.Name = "Schlossplatz 1";
+
+    University mu = new University("Meine Uni");
+    Console.WriteLine(mu.Name);
+
   }
 }
 
 
 class University {
-  public string Name { get; }
+  private string _Name;
+  public string Name { 
+    get {
+      return _Name;
+    }
+    set {
+      if(value != null && value.Length > 2 && value.Length < 100) {
+        _Name = value;
+      } else {
+        throw new Exception("Ungültiger Name");
+      }
+    }
+  }
+
+  private string adresse;
+  public string getAdresse() {
+    return adresse;
+  }
+  
+  public void setAdresse(string a) {
+    if(a != null && a.Length > 10 && a.Length < 100) {
+      adresse = a;
+    } else {
+      throw new Exception("Ungültige Adresse");
+    }
+  }
+
   public List<Building> Buildings { get; } = new List<Building>();
   public List<Klass> Klasses { get; } = new List<Klass>();
   public List<Teacher> Teachers { get; } = new List<Teacher>();
   public Schedule Schedule { get; } = new Schedule();
 
-  public Building AddBuilding(Building newBuilding) {
-    Buildings.Add(newBuilding);
+  public Building AddBuilding(string name) {
+    Building b = new Building(name);
+    Buildings.Add(b);
     return newBuilding;
   }
 
@@ -59,8 +101,12 @@ class University {
     return newTeacher;
   }
 
-  public University(string name) {
+  public University(string n) {
+    Name = n;
+  }
+  public University(string name, string adresse) {
     Name = name;
+    this.adresse = adresse;
   }
 
   public override string ToString() {
