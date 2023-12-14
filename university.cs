@@ -8,7 +8,7 @@ class Program {
 
     // Erstelle Gebäude, Räume, Klassen usw. ...
     Building building1 = university.AddBuilding("E");
-    Room firstRoom = building1.AddRoom(1, 101, 25);
+    Room firstRoom = building1.AddRoom(1, 101, 30);
     Room secondRoom = building1.AddRoom(floor: 1, number: 102, seats: 35);
     building1.AddRoom(floor: 1, number: 103, seats: 32);
 
@@ -23,7 +23,7 @@ class Program {
 
     // Beispielhafte Erstellung von Klassen
     Klass mathKlass = university.AddKlass(new Klass { Name = "Math", NumberOfStudents = 25 });
-    Klass infKlass = university.AddKlass(new Klass { Name = "Inf", NumberOfStudents = 30 });
+    Klass infKlass = university.AddKlass(new Klass { Name = "Inf", NumberOfStudents = 29 });
 
     // Beispielhafte Zuordnung von Veranstaltungen in den Belegungsplan
     university.Schedule.AddEvent(DayOfWeek.Monday, slot: 2, room: firstRoom, klass: mathKlass, teacher: mueller);
@@ -45,6 +45,15 @@ class Program {
     string n = kit.Name;
     kit.Name = "Schlossplatz 1";
 
+    string ort = "KA";
+    if(ort == "KA") {
+      kit.Name = "wert 1";
+    } else {
+      kit.Name = "wert 2";
+    }
+    kit.Name = ort == "KA" ? "wert 1" : "wert 2";
+    Console.WriteLine(kit.Name);
+
     University mu = new University("Meine Uni");
     Console.WriteLine(mu.Name);
 
@@ -54,7 +63,7 @@ class Program {
 
 class University {
   private string _Name;
-  public string Name { 
+  public string Name {
     get {
       return _Name;
     }
@@ -72,9 +81,9 @@ class University {
     return adresse;
   }
   
-  public void setAdresse(string a) {
-    if(a != null && a.Length > 10 && a.Length < 100) {
-      adresse = a;
+  public void setAdresse(string value) {
+    if(value != null && value.Length > 10 && value.Length < 100) {
+      adresse = value;
     } else {
       throw new Exception("Ungültige Adresse");
     }
@@ -88,7 +97,7 @@ class University {
   public Building AddBuilding(string name) {
     Building b = new Building(name);
     Buildings.Add(b);
-    return newBuilding;
+    return b;
   }
 
   public Klass AddKlass(Klass newKlass) {
@@ -115,8 +124,12 @@ class University {
 }
 
 class Building {
-  public string Name { get; set; }
-  public List<Room> Rooms { get; set; } = new List<Room>();
+  public string Name;
+  public List<Room> Rooms = new List<Room>();
+
+  public Building(string name) {
+    Name = name;
+  }
 
   public override string ToString() {
     return $"Building {Name}, {Rooms.Count} rooms";
@@ -130,9 +143,9 @@ class Building {
 }
 
 class Room {
-  public int Floor { get; set; }
-  public int Number { get; set; }
-  public int Seats { get; set; }
+  public int Floor;
+  public int Number;
+  public int Seats;
 
   public override string ToString() {
     return $"Room Floor {Floor}, Number {Number}, Seats {Seats}";
@@ -140,16 +153,16 @@ class Room {
 }
 
 class Klass {
-  public string Name { get; set; }
-  public int NumberOfStudents { get; set; }
+  public string Name;
+  public int NumberOfStudents;
 
   public override string ToString() {
-      return $"Klass {Name}";
+    return $"Klass {Name}";
   }
 }
 
 class Teacher {
-  public string Name { get; set; }
+  public string Name;
   
   public override string ToString() {
     return $"Teacher {Name}";
@@ -157,7 +170,7 @@ class Teacher {
 }
 
 class Schedule {
-  public Dictionary<DayOfWeek, List<TimeSlot>> WeeklySchedule { get; set; } = new Dictionary<DayOfWeek, List<TimeSlot>>();
+  private Dictionary<DayOfWeek, List<TimeSlot>> WeeklySchedule = new Dictionary<DayOfWeek, List<TimeSlot>>();
 
   public Schedule() {
     init();
@@ -166,10 +179,10 @@ class Schedule {
   private void init() {
     for(int wd = (int)DayOfWeek.Monday; wd < (int)DayOfWeek.Saturday; wd++) {
       WeeklySchedule.Add((DayOfWeek)wd, new List<TimeSlot> {
-        new TimeSlot { Slot = "Morning I" },
-        new TimeSlot { Slot = "Morning II" },
-        new TimeSlot { Slot = "Afternoon I" },
-        new TimeSlot { Slot = "Afternoon II" },
+        new TimeSlot { Slot = SlotType.MorningI },
+        new TimeSlot { Slot = SlotType.MorningII },
+        new TimeSlot { Slot = SlotType.AfternoonI },
+        new TimeSlot { Slot = SlotType.AfternoonII },
       });
     }
   }
@@ -202,9 +215,16 @@ class Schedule {
   }
 }
 
+public enum SlotType {
+  MorningI,
+  MorningII,
+  AfternoonI,
+  AfternoonII
+}
+
 class TimeSlot {
-  public string Slot { get; set; }
-  public List<Event> Events { get; set; } = new List<Event>();
+  public SlotType Slot;
+  public List<Event> Events = new List<Event>();
 
   public override string ToString() {
     return $"TimeSlot {Slot}, {Events.Count} events";
@@ -212,9 +232,9 @@ class TimeSlot {
 }
 
 class Event {
-  public Room Room { get; set; }
-  public Klass Klass { get; set; }
-  public Teacher Teacher { get; set; }
+  public Room Room;
+  public Klass Klass;
+  public Teacher Teacher;
 
   public Event(Room room, Klass klass, Teacher teacher) {
     if(room.Seats < klass.NumberOfStudents) {
