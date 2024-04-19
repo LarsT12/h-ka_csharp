@@ -1,6 +1,6 @@
 Aufg. 1
   Schreibe eine Klasse namens "Sequenz", die
-  3 Anweisungen als Sequenz ausführt
+  3 Anweisungen als Sequenz ausführt.
   
   
 Aufg. 2

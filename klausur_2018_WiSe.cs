@@ -13,7 +13,7 @@ class Klausur2018WiSe {
   public static void aufg3b() {
     List<double> summen = ZeilenSumme("klausur_2018_WiSe_Aufg3b.txt");
     Console.WriteLine("Ausgabe der zeilenweisen Summen:");
-    
+
     foreach(double s in summen) {
       Console.WriteLine(s);
     }
@@ -75,5 +75,5 @@ class Klausur2018WiSe {
       }
     }
   }
-  
+
 }

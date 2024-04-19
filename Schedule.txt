@@ -1,0 +1,33 @@
+Monday:
+	MorningI:
+	MorningII:
+	AfternoonI:
+		Event Class Math with teacher Mueller in room 101
+	AfternoonII:
+
+Tuesday:
+	MorningI:
+	MorningII:
+	AfternoonI:
+	AfternoonII:
+
+Wednesday:
+	MorningI:
+	MorningII:
+	AfternoonI:
+	AfternoonII:
+
+Thursday:
+	MorningI:
+	MorningII:
+	AfternoonI:
+	AfternoonII:
+
+Friday:
+	MorningI:
+		Event Class Inf with teacher Schulze in room 101
+		Event Class Math with teacher Mueller in room 102
+	MorningII:
+	AfternoonI:
+	AfternoonII:
+
