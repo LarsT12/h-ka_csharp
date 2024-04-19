@@ -2,7 +2,6 @@ Aufg. 1
   Schreibe eine Klasse namens "Sequenz", die
   3 Anweisungen als Sequenz ausführt.
   
-  
 Aufg. 2
   Schreibe eine Klasse namens "Loop", die
   eine Sequenz von mind. 2 Anweisungen
