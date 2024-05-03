@@ -1,0 +1,65 @@
+Aufg. 1
+  Bilde in C# in einfacher Form den Belegungsplan einer Universität ab. Erzeuge dazu folgende Strukturen:
+  - Universität (Klasse "University") mit der Eigenschaft "Name" und später Listen zu den nachfolgend aufgeführten Klassen (sobald angelegt)
+    - "Building"
+    - "Klass"
+    - "Teacher"
+    sowie einem 
+    - "Schedule".
+    initialisiere alle Objekte direkt, so dass die Initialisierung autom. beim Erzeugen des Objekts stattfindet. 
+  - Gebäude (Klasse "Building"), u.a. mit der Eigenschaft "Name", die der University zugeordnet werden können
+  - Räume (Klasse "Room"), die den Gebäuden zugeordnet werden können, mit den Eigenschaften 
+    Etage "Floor", Raumnummer "Number" und "Seats" für die Anzahl der Plätze im Raum
+  - Unterrichtsklassen (Klasse "Klass") mit den Eigenschaften "Name" und "NumberOfStudents" für die Anzahl der Studierenden.
+  - Lehrer*innen (Klass "Teacher") mit der Eigenschaft "Name"
+  - Belegungsplan (Klasse "Schedule"), der für 
+    - die 5 Wochentagen 
+    - jeweils 4 Zeitfenster (Klasse "TimeSlot"), "Morning I", "Morning II", "Afternoon I", "Afternoon II", verwalten kann, 
+    - an denen Veranstaltungen (Klasse "Event") stattfinden können
+  - Die Veranstaltungen (Klasse "Event") stellen Zuordnungen
+    - eines Raums ("Room"),
+    - einer Klasse ("Klass") und
+    - eines Lehrers
+    - zu einem bestimmten Zeit-Fenster ("TimeSlot") eines bestimmten Wochentags dar.
+
+Aufg. 2
+  Erstelle zusätzlich eine Klasse "Program" 
+  - mit einer Main()-Methode zum Aufrufen des Codes
+  - und initailisere eine University
+  
+Aufg. 3
+  Erstelle Methoden "Add..." für die Klasse "University", die das Hinzufügen von 
+  - Gebäuden ("Building")
+  - Klassen ("Klass")
+  - Lehrer*innen ("Teacher")
+  ermöglichen.
+  Erstelle eine Methode für die Klasse "Building", die das Hinzufügen von 
+  - Räumen ("Room")
+  ermöglichen.
+
+Aufg. 4
+  Erstelle für die Klasse "Schedule"
+  - ein Dictionary namens "WeeklySchedule", 
+  - in dem zu jedem Wochentag (nutze hierzu die Enumeration "DayOfWeek")
+  - eine Liste der "TimeSlot"-Objekte für die Zeit-Fenster eines jeden Tags verwaltet werden kann
+  Erstelle einen Konstruktor, der eine Methode "init()" aufruft, die
+  - das o.g. Dictionary mit Zeit-Fenstern für jeden Tag befüllt
+  Erstelle eine Methode "AddEvent" zum Hinzufügen einer Veranstaltung ("Event") 
+  - an einem Wochentag und Zeitfenster, 
+  - unter Angabe von Klasse und Lehrer*in
+
+Aufg. 5
+  Füge allen Klassen überschriebene ToString-Methode hinzu, 
+  um sehr einfach mit "Console.WriteLine(MeinObject)" wesentliche Informationen des Objekts ausgeben zu können.
+
+Aufg. 6
+  Füge der in Aufg. 2 initialisierten University beispielhaft
+  - Gebäude mit Räume
+  - Klassen und 
+  - Lehrer*innen
+  hinzu.
+  Erstelle ein paar Veranstaltung im "Schedule"
+
+Aufg. 7
+  Implementiere beim Erzeugen eines "Event" eine Prüfung (Werfen einer Exception), um sicherzustellen, 
+  dass keine Klasse einem Raum zugeordnet wird, der zu klein ist für die Anzahl der Studierenden.
