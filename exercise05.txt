@@ -1,0 +1,44 @@
+Aufg. 1
+  Implementiere eine einfache WarenWirtschaft. Erzeuge dazu folgende Strukturen:
+  - Produkte (Klasse "Product"), die verwaltet werden sollen. Die Eigenschaften eines Produkts sind:
+    - Number, z.B. "987678"
+    - Name, z.B. "Bürostuhl"
+    - Category, z.B. "Büromöbel"
+    - Price, z.B. 70.5
+    - MinOrderQty, z.B. 10;
+  - Lager (Klasse "Stock"), in denen diese Produkte hinzugefügt werden können. 
+    Die Produkte sollen in einer Liste "Products" gespeichert werden.
+  
+  Erstellen Sie ein paar Beispiel-Produkte und mind. ein Lager und fügen Sie einige Produkte einem Lager hinzu.
+  Lassen Sie sich beispielhaft die Eigenschaften eines der auf dem Lager liegenden Produkte ausgeben.
+
+Aufg. 2
+  Ändern Sie die Implementierung so, dass zum Erzeugen eines neuen Produkts ein Konstruktor bereitsteht, 
+  dem Sie direkt Number, Name und Price mitgeben können.
+  Erstellen Sie selbst den nun nicht mehr vorhandenen Standard-Konstruktor, der ein Produkt ohne Parameter anlegen kann.
+
+Aufg. 3
+  Ändern Sie die Sichtbarkeit der Eigenschaft Number so, dass sie von Außen nicht mehr geändert werden kann.
+  Löschen Sie den Standard-Konstruktor wieder.
+
+Aufg. 4
+  Erstellen Sie eine weitere Eigenschaft "PriceProtocol" vom Typ List<string>.
+  Stellen Sie die Eigenschaft Price auf eine Property mit einer privaten Variable _Price um, 
+  dass beim Ändern des Preises immer ein neuer Eintrag im PriceProtocol erfolgt, der den bisher gültigen Preis dokumentiert.
+
+Aufg. 5
+  Das Lager hat bisher eine entscheidende Schwäche: Ihm können zwar verschiedene Produkte hinzugefügt werden, 
+  aber es wird keine Anzahl pro Produkt geführt - um zwei Stück eines Produkts auf Lager zu legen, muss es bisher zweimal hinzugefügt werden.
+  Stellen Sie die Lagerverwaltung so um, dass Produkte in einer beliebigen ganzzahligen Menge auf Lager gelegt werden können.
+  Natürlich soll beim Hinzufügen geprüft werden, ob das Produkt bereits auf Lager ist, so dass hier einfach nur die Menge erhöht wird.
+
+Aufg. 6
+  Erstellen Sie eine Entnehmen-Methode, die den Bestand wieder reduziert.
+
+Aufg. 7
+  Führen Sie fortlaufend den Bestandswert jedes Produkts in Ihrem Lager. 
+  Hierzu empfiehlt sich eine Eigenschaft "AverageCost" für jedes gelagerte Produkt zu führen. 
+  Er ergibt aus der gewichteten Durchschnitt der Menge an Produkten, die bereits zu einer bestimmten AverageCost auf Lager liegen und
+  der Menge an Produkten, die zu einem neuen Preis aufs Lager gelegt werden.
+  Geben Sie zur Überprüfung eine Liste mit allen Produkten und ihrem AverageCost aus sowie dem Gesamtwert aller Produkte.
+
