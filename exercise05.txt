@@ -21,10 +21,11 @@ Aufg. 3
   Ändern Sie die Sichtbarkeit der Eigenschaft Number so, dass sie von Außen nicht mehr geändert werden kann.
   Löschen Sie den Standard-Konstruktor wieder.
 
-Aufg. 4
+Aufg. 4 (Hausaufgabe statt Vorlesung am 31. Mai 2024)
   Erstellen Sie eine weitere Eigenschaft "PriceProtocol" vom Typ List<double>.
   Stellen Sie die Eigenschaft Price auf eine Property mit einer privaten Variable _Price um, 
-  dass beim Ändern des Preises immer ein neuer Eintrag im PriceProtocol erfolgt, der den bisher gültigen Preis dokumentiert.
+  dass beim Ändern des Preises über den Setter der Property Price immer ein neuer Eintrag im PriceProtocol erfolgt, 
+  der den bisher gültigen Preis dokumentiert.
 
 Aufg. 5
   Das Lager hat bisher eine entscheidende Schwäche: Ihm können zwar verschiedene Produkte hinzugefügt werden, 
