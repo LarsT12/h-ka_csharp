@@ -22,7 +22,7 @@ Aufg. 3
   Löschen Sie den Standard-Konstruktor wieder.
 
 Aufg. 4
-  Erstellen Sie eine weitere Eigenschaft "PriceProtocol" vom Typ List<string>.
+  Erstellen Sie eine weitere Eigenschaft "PriceProtocol" vom Typ List<double>.
   Stellen Sie die Eigenschaft Price auf eine Property mit einer privaten Variable _Price um, 
   dass beim Ändern des Preises immer ein neuer Eintrag im PriceProtocol erfolgt, der den bisher gültigen Preis dokumentiert.
 
