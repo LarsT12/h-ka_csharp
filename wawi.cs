@@ -11,11 +11,12 @@ class WarenWirtschaft {
     Product p2 = new Product("983424", "Arbeitstisch", "Büromöbel", 230.0, 5);
     Product p3 = new Product("981424", "Barhocker");
 
-    p1.PriceProtocol.Add(p1.Price);
     p1.Price = 89.0;
-
-    p1.PriceProtocol.Add(p1.Price);
     p1.Price = 91.5;
+
+    foreach(double price in p1.PriceProtocol) {
+      Console.WriteLine(price);
+    }
 
     s1.Products.Add(p1);
     s1.Products.Add(p2);
@@ -28,7 +29,17 @@ class WarenWirtschaft {
 class Product {
   public string Number { get; private set; }
   public string Name;
-  public double Price;
+  
+  private double _Price;
+  public double Price { 
+    get {
+      return _Price;
+    }
+    set {
+      PriceProtocol.Add(Price);
+      _Price = value;
+    }
+  }
   public List<double> PriceProtocol = new List<double>();
   public string Category;
   public int MinOrderQty;
@@ -42,7 +53,7 @@ class Product {
     Number = number;
     Name = name;
     Category = category;
-    Price = price;
+    _Price = price;
     MinOrderQty = minOrderQty;
   }
 }
