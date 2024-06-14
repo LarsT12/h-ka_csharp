@@ -14,7 +14,7 @@ class WarenWirtschaft {
     p1.Price = 89.0;
     p1.Price = 91.5;
 
-    foreach(double price in p1.PriceProtocol) {
+    foreach(double price in p1.PriceProtocolList()) {
       Console.WriteLine(price);
     }
 
@@ -40,7 +40,11 @@ class Product {
       _Price = value;
     }
   }
-  public List<double> PriceProtocol = new List<double>();
+  private List<double> PriceProtocol = new List<double>();
+  public IEnumerable<double> PriceProtocolList() {
+      return (IEnumerable<double>)PriceProtocol.AsReadOnly();
+  }
+
   public string Category;
   public int MinOrderQty;
 
