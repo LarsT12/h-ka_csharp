@@ -9,8 +9,10 @@ class Klausur2018WiSe {
     // aufg1b(25);
     // aufg1c("Hallo");
     // aufg1d();
-    aufg1e();
-
+    // aufg1e();
+    // aufg2a();
+    aufg2b();
+    aufg2c();
   }
 
   public static void aufg1a(int i1, int i2) {
@@ -65,5 +67,51 @@ class Klausur2018WiSe {
     foreach(bool b in bfeld) {
       Console.WriteLine(b);
     }
+  }
+
+  public static void aufg2a() {
+    Suchergebnis suche = new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 };
+    Console.WriteLine(suche.Bezeichnung);
+  }
+
+  public static void aufg2b() {
+    List<Suchergebnis> suche = new List<Suchergebnis>() {
+      new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 1", Preis = 2.0 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 2", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 3", Preis = 2.6 },
+    };
+    double dPreis = DPreis(suche, "Stift");
+    Console.WriteLine(dPreis);
+  }
+
+  public static void aufg2c() {
+
+  }
+
+  public static double DPreis(List<Suchergebnis> suche, string kat) {
+    double dPreis = 0.0;
+    int cnt = 0;
+
+    // Finde passende Daten
+    foreach(Suchergebnis s in suche) {
+      if(s.Kategorie == kat) {
+        dPreis += s.Preis;
+        cnt++;
+      }
+    }
+
+    // Durchschnitt bilden
+    if(cnt > 0) {
+      dPreis /= cnt;
+    }
+    return dPreis;
+    // return cnt == 0 ? 0.0 : dPreis / cnt;
+  }
+
+  public struct Suchergebnis {
+    public string Kategorie;
+    public string Bezeichnung;
+    public double Preis;
   }
 }
