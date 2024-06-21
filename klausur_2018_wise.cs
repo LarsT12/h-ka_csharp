@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Klausur2018WiSe {
   public static void Main() {
@@ -85,6 +86,9 @@ class Klausur2018WiSe {
     };
     double dPreis = DPreis(suche, "Stift");
     Console.WriteLine(dPreis);
+    
+    dPreis = DPreis_Optimierung(suche, "Stift");
+    Console.WriteLine(dPreis);
   }
 
   public static double DPreis(List<Suchergebnis> suche, string kat) {
@@ -107,6 +111,12 @@ class Klausur2018WiSe {
     // return cnt == 0 ? 0.0 : dPreis / cnt;
   }
 
+  public static double DPreis_Optimierung(List<Suchergebnis> suche, string kat) {
+    var gefilterteErgebnisse = suche.Where(s => s.Kategorie == kat).Select(s => s.Preis);
+    return gefilterteErgebnisse.Any() ? gefilterteErgebnisse.Average() : 0.0;
+  }
+
+
   public static void aufg2c() {
     List<Suchergebnis> suche = new List<Suchergebnis>() {
       new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
@@ -118,6 +128,11 @@ class Klausur2018WiSe {
     int index = IndexVon(suche, "Stift");
     Console.WriteLine(index);
     index = IndexVon(suche, "Sonstwas");
+    Console.WriteLine(index);
+
+    index = IndexVon_Optimierung(suche, "Stift");
+    Console.WriteLine(index);
+    index = IndexVon_Optimierung(suche, "Sonstwas");
     Console.WriteLine(index);
   }
 
@@ -133,6 +148,17 @@ class Klausur2018WiSe {
     return index;
   }
 
+  public static int IndexVon_Optimierung(List<Suchergebnis> suche, string kat) {
+    // Sucht rückwärts und findet damit schneller den höchsten Index
+    for(int i = suche.Count - 1; i >= 0; --i) {
+      if (suche[i].Kategorie == kat) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+
   public static void aufg2d() {
     List<Suchergebnis> suche = new List<Suchergebnis>() {
       new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
@@ -142,6 +168,11 @@ class Klausur2018WiSe {
       new Suchergebnis() { Kategorie = "Tisch", Bezeichnung = "T 1", Preis = 22.6 }
     };
     List<Suchergebnis> ergebnis = AlleVon(suche, "Stift");
+    foreach(Suchergebnis e in ergebnis) {
+      Console.WriteLine(e.Bezeichnung);
+    }
+
+    ergebnis = AlleVon_Optimierung(suche, "Stift");
     foreach(Suchergebnis e in ergebnis) {
       Console.WriteLine(e.Bezeichnung);
     }
@@ -157,6 +188,10 @@ class Klausur2018WiSe {
     }
 
     return ergebnis;
+  }
+
+  public static List<Suchergebnis> AlleVon_Optimierung(List<Suchergebnis> suche, string kat) {
+    return suche.Where(s => s.Kategorie == kat).ToList();
   }
 
   public static void aufg2e() {
