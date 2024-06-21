@@ -11,8 +11,10 @@ class Klausur2018WiSe {
     // aufg1d();
     // aufg1e();
     // aufg2a();
-    aufg2b();
-    aufg2c();
+    // aufg2b();
+    // aufg2c();
+    // aufg2d();
+    aufg2e();
   }
 
   public static void aufg1a(int i1, int i2) {
@@ -85,10 +87,6 @@ class Klausur2018WiSe {
     Console.WriteLine(dPreis);
   }
 
-  public static void aufg2c() {
-
-  }
-
   public static double DPreis(List<Suchergebnis> suche, string kat) {
     double dPreis = 0.0;
     int cnt = 0;
@@ -107,6 +105,92 @@ class Klausur2018WiSe {
     }
     return dPreis;
     // return cnt == 0 ? 0.0 : dPreis / cnt;
+  }
+
+  public static void aufg2c() {
+    List<Suchergebnis> suche = new List<Suchergebnis>() {
+      new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 1", Preis = 2.0 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 2", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 3", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Tablet", Bezeichnung = "T 1", Preis = 22.6 }
+    };
+    int index = IndexVon(suche, "Stift");
+    Console.WriteLine(index);
+    index = IndexVon(suche, "Sonstwas");
+    Console.WriteLine(index);
+  }
+
+  public static int IndexVon(List<Suchergebnis> suche, string kat) {
+    int index = -1;
+
+    for(int i = 0; i < suche.Count; ++i) {
+      if(suche[i].Kategorie == kat) {
+        index = i;
+      }
+    }
+
+    return index;
+  }
+
+  public static void aufg2d() {
+    List<Suchergebnis> suche = new List<Suchergebnis>() {
+      new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 1", Preis = 2.0 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 2", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 3", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Tisch", Bezeichnung = "T 1", Preis = 22.6 }
+    };
+    List<Suchergebnis> ergebnis = AlleVon(suche, "Stift");
+    foreach(Suchergebnis e in ergebnis) {
+      Console.WriteLine(e.Bezeichnung);
+    }
+  }
+
+  public static List<Suchergebnis> AlleVon(List<Suchergebnis> suche, string kat) {
+    List<Suchergebnis> ergebnis = new List<Suchergebnis>();
+
+    foreach(Suchergebnis s in suche) {
+      if(s.Kategorie == kat) {
+        ergebnis.Add(s);
+      }
+    }
+
+    return ergebnis;
+  }
+
+  public static void aufg2e() {
+    List<Suchergebnis> suche = new List<Suchergebnis>() {
+      new Suchergebnis() { Kategorie = "Kat", Bezeichnung = "Bez", Preis = 12.4 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 1", Preis = 2.0 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 2", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 3", Preis = 2.2 },
+      new Suchergebnis() { Kategorie = "Stift", Bezeichnung = "S 4", Preis = 2.6 },
+      new Suchergebnis() { Kategorie = "Tisch", Bezeichnung = "T 1", Preis = 22.6 }
+    };
+    List<int> ergebnis = MaxPreisVon(suche, "Stift");
+    foreach(int e in ergebnis) {
+      Console.WriteLine(e);
+    }
+  }
+
+  public static List<int> MaxPreisVon(List<Suchergebnis> suche, string kat) {
+    List<int> ergebnis = new List<int>();
+    double max = -1.0;
+
+    foreach(Suchergebnis s in suche) {
+      if(s.Kategorie == kat && s.Preis > max) {
+        max = s.Preis;
+      }
+    }
+
+    for(int i = 0; i < suche.Count; ++i) {
+      if(suche[i].Kategorie == kat && suche[i].Preis == max) {
+        ergebnis.Add(i);
+      }
+    }
+
+    return ergebnis;
   }
 
   public struct Suchergebnis {
