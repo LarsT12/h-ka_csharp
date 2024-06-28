@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 class Klausur2018WiSe {
   public static void Main() {
@@ -15,7 +16,9 @@ class Klausur2018WiSe {
     // aufg2b();
     // aufg2c();
     // aufg2d();
-    aufg2e();
+    // aufg2e();
+    // aufg3a();
+    aufg3b();
   }
 
   public static void aufg1a(int i1, int i2) {
@@ -151,7 +154,7 @@ class Klausur2018WiSe {
   public static int IndexVon_Optimierung(List<Suchergebnis> suche, string kat) {
     // Sucht rückwärts und findet damit schneller den höchsten Index
     for(int i = suche.Count - 1; i >= 0; --i) {
-      if (suche[i].Kategorie == kat) {
+      if(suche[i].Kategorie == kat) {
         return i;
       }
     }
@@ -232,5 +235,66 @@ class Klausur2018WiSe {
     public string Kategorie;
     public string Bezeichnung;
     public double Preis;
+  }
+
+  public static void aufg3a() {
+    Schreibe("klausur_2018_wise_aufg3a.txt", 20);
+  }
+
+  public static void Schreibe(string dName, int breite) {
+    StreamWriter sw = null;
+
+    try {
+      sw = new StreamWriter(dName);
+
+      for(int z = 0; z < breite; z++) {
+        for(int s = 0; s < breite; s++) {
+          string x = (z - s) % 5 == 0 ? "+" : "_";
+          sw.Write(x);
+        }
+        sw.WriteLine();
+      }
+    } catch(IOException e) {
+      Console.WriteLine("Fehlermeldung: " + e.Message);
+    } finally {
+      if(sw != null) {
+        sw.Close();
+      }
+    }
+  }
+
+  public static void aufg3b() {
+    List<double> summen = ZeilenSumme("klausur_2018_wise_aufg3b.txt");
+    Console.WriteLine("Zeilenweise Ausgabe der Summen:");
+
+    foreach(double s in summen) {
+      Console.WriteLine(s);
+    }
+  }
+
+  public static List<double> ZeilenSumme(string dName) {
+    List<double> summen = new List<double>();
+
+    StreamReader sr = new StreamReader(dName);
+    string zeile;
+    while((zeile = sr.ReadLine()) != null) {
+      double s = 0;
+      string[] elemente = zeile.Split(new char[]{':'});
+      foreach(string elem in elemente) {
+        if(elem.Length > 0) {
+          //s += Convert.ToDouble(elem);
+          
+          // Alternative Lösung, die sicherstellt, dass nur gültige Zahlen verarbeitet werden
+          double zahl;
+          if(double.TryParse(elem, out zahl)) {
+            s += zahl;
+          }
+          
+        }
+      }
+      summen.Add(s);
+    }
+
+    return summen;
   }
 }
