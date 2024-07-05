@@ -1,0 +1,29 @@
+Aufgabe 3: Dateien
+
+a.) Schreiben Sie eine Methode:
+
+public static void Schreibe(string dateiname, int breite)
+Die Methode soll eine Textdatei mit dem Namen dName erzeugen. 
+Die Datei soll ein quadratisches Muster mit so vielen Zeichen enthalten, wie die breite angibt. 
+Das Muster besteht aus Ziffern (Breiten größer als 9 ignorieren wir) und zwar 
+besteht die erste Zeile aus lauter Einsen, 
+die zweite aus 1 und 2 im Wechsel, 
+die dritte aus 1, 2 und 3 im Wechsel (siehe Abbildung).
+
+11111111
+12121212
+12312312
+12341234
+12345123
+12345612
+12345671
+12345678
+
+b.) Schreiben Sie eine Methode:
+
+public static int ZähleEinser(string dateiname)
+die die Textdatei mit Wert des Parameters dateiname als Namen liest. 
+Die Funktion soll die Anzahl aller Zahlen in dem Text zurückgeben, die nur aus Einsen bestehen, 
+also 1, 11, 111 zählen jeweils als eine solche Zahl. 
+Fangen Sie dabei alle Exceptions des Typ IOException ab und geben Sie 
+im Fehlerfall die Ursache des Fehlers auf dem Bildschirm aus.
