@@ -1,6 +1,6 @@
 using System;
 
-class Loop {
+class Fields01 {
   
   static void Main() {
     string[] wochentag = new string[] { "Mo", "Di", "Mi", "Do", "Fr" };
