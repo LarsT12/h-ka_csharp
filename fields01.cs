@@ -5,6 +5,7 @@ class Fields01 {
   static void Main() {
     string[] wochentag = new string[] { "Mo", "Di", "Mi", "Do", "Fr" };
     string[] wochenendtag = new string[] { "Sa", "So" };
+    int[] zahlen = new int[17];
 
     Console.WriteLine("Wochenbeginn");
 
