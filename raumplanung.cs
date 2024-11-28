@@ -10,15 +10,35 @@ class Raumplanung {
 
     Console.WriteLine(r1.Gebaeude + r1.Nummer + ": " + r1.Kapazitaet);
     Console.WriteLine(r2.Gebaeude + r2.Nummer + ": " + r2.Kapazitaet);
+
+    Studiengruppe s1 = new Studiengruppe("ES01");
+    s1.Groesse = 12;
+
+    Dozent d1 = new Dozent("UMU");
+    Dozent d2 = new Dozent("LTH");
+
+    Vorlesung v1 = new Vorlesung("C#", r1, s1, d2);
+    Console.WriteLine(v1.Name + ": Raum " + v1.Raum.Gebaeude + v1.Raum.Nummer + " (" + v1.Raum.Kapazitaet + ")" + ", Studiengruppe " + v1.Studis.Name + ", Dozent " + v1.Dozent.Name);
+    
   }
 }
 
 class Kalender {
-
+  
 }
 
 class Vorlesung {
-  public string Name;
+  public string Name { get; }
+  public Raum Raum { get; }
+  public Studiengruppe Studis { get; }
+  public Dozent Dozent { get; }
+
+  public Vorlesung(string name, Raum raum, Studiengruppe studis, Dozent dozent) {
+    Name = name;
+    Raum = raum;
+    Studis = studis;
+    Dozent = dozent;
+  }
 
 }
 
@@ -54,10 +74,18 @@ class Raum {
 }
 
 class Studiengruppe {
-  public string Name;
+  public string Name { get; }
   public int Groesse;
+
+  public Studiengruppe(string name) {
+    Name = name;
+  }
 }
 
 class Dozent {
-  public string Name;
+  public string Name { get; }
+
+  public Dozent(string name) {
+    Name = name;
+  }
 }
