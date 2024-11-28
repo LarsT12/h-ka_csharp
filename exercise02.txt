@@ -1,11 +1,16 @@
 Aufg. 1
   Erstelle zur Digitalisierung der Raumplanung an der H-KA folgende in der Datei raumplanung.cs folgende Klassen:
-  * Raumplanung (Einstiegsklasse)
-  * Raum
-  * Kalender
-  * Vorlesung
-  * Studiengruppe
-  * Dozent
+  - Raumplanung (Einstiegsklasse)
+  - Raum
+  - Kalender
+  - Vorlesung
+  - Studiengruppe
+  - Dozent
 
 Aufg. 2
-  
+  Füge der Klasse **Vorlesung** die Eigenschaften
+  - Name
+  - Raum
+  - Studiengruppe
+  - Dozent
+  hinzu und erzeuge einige Beispiel-Vorlesungen.
