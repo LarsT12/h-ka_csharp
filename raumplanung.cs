@@ -25,7 +25,19 @@ class Vorlesung {
 class Raum {
   public char Gebaeude { get; }
   public string Nummer { get; }
-  public int Kapazitaet;
+  
+  private int _Kapazitaet;
+  public int Kapazitaet {
+    get {
+      return _Kapazitaet;
+    }
+    set {
+      if(value < 1) throw new Exception("Kapazität muss > 0 sein!");
+      if(value > 499) throw new Exception("Kapazität muss < 500 sein!");
+
+      _Kapazitaet = value;
+    }
+  }
 
   public Raum(char Gebaeude, string Nr) {
     this.Gebaeude = Gebaeude;
