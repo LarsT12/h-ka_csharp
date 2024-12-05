@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 class Raumplanung {
   static void Main() {
@@ -8,34 +9,67 @@ class Raumplanung {
 
     Raum r2 = new Raum('E', "011", 17);
 
-    Console.WriteLine(r1.Gebaeude + r1.Nummer + ": " + r1.Kapazitaet);
-    Console.WriteLine(r2.Gebaeude + r2.Nummer + ": " + r2.Kapazitaet);
-
     Studiengruppe s1 = new Studiengruppe("ES01");
     s1.Groesse = 12;
+    Studiengruppe s2 = new Studiengruppe("ABC01");
+    s2.Groesse = 24;
 
     Dozent d1 = new Dozent("UMU");
     Dozent d2 = new Dozent("LTH");
 
-    Vorlesung v1 = new Vorlesung("C#", r1, s1, d2);
-    Console.WriteLine(v1.Name + ": Raum " + v1.Raum.Gebaeude + v1.Raum.Nummer + " (" + v1.Raum.Kapazitaet + ")" + ", Studiengruppe " + v1.Studis.Name + ", Dozent " + v1.Dozent.Name);
-    
+    Vorlesung v1 = new Vorlesung("C#", s1, d2);
+    Vorlesung v2 = new Vorlesung("Inf", s2, d1);
+
+    Buchung b1 = new Buchung("Do", 1, r1, v1);
+    Buchung b2 = new Buchung("Do", 1, r1, v2);
+
+    Kalender k = new Kalender();
+    k.Buchungen.Add(b1);
+    k.Buchungen.Add(b2);
+    Console.WriteLine(k);
   }
 }
 
 class Kalender {
-  
+  //private readonly string[] Tage = { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" };
+  public List<Buchung> Buchungen = new List<Buchung>();
+
+  public override string ToString() {
+    string ret = "";
+
+    foreach(Buchung b in Buchungen) {
+      ret += b + "\n";
+    }
+
+    return ret;
+  }
+}
+
+class Buchung {
+  public string Tag { get; }
+  public int Block { get; }
+  public Raum Raum { get; }
+  public Vorlesung Vorlesung { get; }
+
+  public Buchung(string tag, int block, Raum raum, Vorlesung vorlesung) {
+    Tag = tag;
+    Block = block;
+    Raum = raum;
+    Vorlesung = vorlesung;
+  }
+
+  public override string ToString() => $"{Tag}, Block {Block}: {Vorlesung} im {Raum}";
 }
 
 class Vorlesung {
   public string Name { get; }
-  public Raum Raum { get; }
   public Studiengruppe Studis { get; }
   public Dozent Dozent { get; }
 
-  public Vorlesung(string name, Raum raum, Studiengruppe studis, Dozent dozent) {
+  public override string ToString() => $"Vorlesung {Name}: {Studis}, {Dozent}";
+
+  public Vorlesung(string name, Studiengruppe studis, Dozent dozent) {
     Name = name;
-    Raum = raum;
     Studis = studis;
     Dozent = dozent;
   }
@@ -59,6 +93,9 @@ class Raum {
     }
   }
 
+  public override string ToString() => $"Raum {Gebaeude}{Nummer} ({Kapazitaet})";
+
+
   public Raum(char Gebaeude, string Nr) {
     this.Gebaeude = Gebaeude;
     Nummer = Nr;
@@ -77,6 +114,8 @@ class Studiengruppe {
   public string Name { get; }
   public int Groesse;
 
+  public override string ToString() => $"Studiengruppe {Name} ({Groesse})";
+
   public Studiengruppe(string name) {
     Name = name;
   }
@@ -84,6 +123,8 @@ class Studiengruppe {
 
 class Dozent {
   public string Name { get; }
+
+  public override string ToString() => $"Dozent {Name}";
 
   public Dozent(string name) {
     Name = name;

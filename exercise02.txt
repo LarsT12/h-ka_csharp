@@ -14,3 +14,26 @@ Aufg. 2
   - Studiengruppe
   - Dozent
   hinzu und erzeuge einige Beispiel-Vorlesungen.
+
+Aufg. 3
+  Überschreibe für die Objekte Raum und Studiengruppe die ToString()-Methode.
+
+Aufg. 4
+  Erstelle eine Klasse Buchung mit
+  - Tag { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" }
+  - Block 1 - 4
+  - Raum
+  - Vorlesung
+  Entferne den Raum aus dem Objekt Vorlesung.
+
+Aufg. 5
+  Überschreibe die ToString()-Methode für Dozent.
+  Überschreibe die ToString()-Methode der Klasse Vorlesung und gib 
+    Name + ": " + Studis + ", " + Dozent
+  zurück.
+
+Aufg. 6
+  Erstelle eine Methode zum Hinzufügen einer Buchung zu einem Kalender-Block.
+
+Aufg. 7
+  Verschiebe eine Buchung (Raum, Zeit).
