@@ -3,32 +3,38 @@ using System.Collections.Generic;
 
 class Raumplanung {
   static void Main() {
-    Console.WriteLine("Raumplanung H-KA gestaret...");
-    Raum r1 = new Raum('E', "010");
-    r1.Kapazitaet = 21;
+    try {
+      Console.WriteLine("Raumplanung H-KA gestaret...");
+      Raum r1 = new Raum('E', "010");
+      r1.Kapazitaet = 21;
 
-    Raum r2 = new Raum('E', "011", 17);
+      Raum r2 = new Raum('E', "011", 17);
 
-    Studiengruppe s1 = new Studiengruppe("ES01");
-    s1.Groesse = 12;
-    Studiengruppe s2 = new Studiengruppe("ABC01");
-    s2.Groesse = 24;
+      Studiengruppe s1 = new Studiengruppe("ES01");
+      s1.Groesse = 12;
+      Studiengruppe s2 = new Studiengruppe("ABC01");
+      s2.Groesse = 24;
 
-    Dozent d1 = new Dozent("UMU");
-    Dozent d2 = new Dozent("LTH");
+      Dozent d1 = new Dozent("UMU");
+      Dozent d2 = new Dozent("LTH");
 
-    Vorlesung v1 = new Vorlesung("C#", s1, d2);
-    Vorlesung v2 = new Vorlesung("Inf", s2, d1);
+      Vorlesung v1 = new Vorlesung("C#", s1, d2);
+      Vorlesung v2 = new Vorlesung("Inf", s2, d1);
 
-    Buchung b1 = new Buchung("Do", 1, r1, v1);
-    Buchung b2 = new Buchung("Do", 1, r1, v2);
-    Buchung b3 = new Buchung("Fr", 2, r1, v2);
+      Buchung b1 = new Buchung("Do", 1, r1, v1);
+      Buchung b2 = new Buchung("Do", 1, r1, v2);
+      Buchung b3 = new Buchung("Fr", 2, r1, v2);
 
-    Kalender k = new Kalender();
-    k.AddBuchung(b1);
-    k.AddBuchung(b2);
-    k.AddBuchung(b3);
-    Console.WriteLine(k);
+      Kalender k = new Kalender();
+      k.AddBuchung(b1);
+      k.AddBuchung(b2);
+      k.AddBuchung(b3);
+      Console.WriteLine(k);
+    }
+    catch(Exception e) {
+      Console.WriteLine("Es ist ein Fehler aufgetreten:");
+      Console.WriteLine($"  {e.Message}");
+    }
   }
 }
 
@@ -76,6 +82,10 @@ class Buchung {
   public Vorlesung Vorlesung { get; }
 
   public Buchung(string tag, int block, Raum raum, Vorlesung vorlesung) {
+    if(raum.Kapazitaet < vorlesung.Studis.Groesse) {
+      throw new Exception($"{raum} bietet nicht genügend Platz für {vorlesung.Studis.Groesse} Studierende!");
+    }
+
     Tag = tag;
     Block = block;
     Raum = raum;
