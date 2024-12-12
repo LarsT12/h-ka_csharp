@@ -33,7 +33,18 @@ Aufg. 5
   zurück.
 
 Aufg. 6
-  Erstelle eine Methode zum Hinzufügen einer Buchung zu einem Kalender-Block.
+  Erstelle eine Methode zum Hinzufügen einer Buchung zu einem Kalender.
+  Prüfe, ob es an diesem Tag und Block bereits eine Buchung für diesen Raum gibt.
 
 Aufg. 7
+  Prüfe beim Erzeugen einer Buchung, ob die Kapa des Raums zur Größe der Studiengruppe passt.
+
+Aufg. 8
+  Füge beim Erzeugen einer Buchung diese direkt dem Kalender hinzu.
+
+Aufg. 9
+  Gib den Kalender Tages/Block-Tabelle aus und schreibe an die gebuchten Stellen die Raumnummer.
+  Schreibe die Ausgabe in eine Datei.
+
+Aufg. x
   Verschiebe eine Buchung (Raum, Zeit).

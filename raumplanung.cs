@@ -22,17 +22,41 @@ class Raumplanung {
 
     Buchung b1 = new Buchung("Do", 1, r1, v1);
     Buchung b2 = new Buchung("Do", 1, r1, v2);
+    Buchung b3 = new Buchung("Fr", 2, r1, v2);
 
     Kalender k = new Kalender();
-    k.Buchungen.Add(b1);
-    k.Buchungen.Add(b2);
+    k.AddBuchung(b1);
+    k.AddBuchung(b2);
+    k.AddBuchung(b3);
     Console.WriteLine(k);
   }
 }
 
 class Kalender {
   //private readonly string[] Tage = { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" };
-  public List<Buchung> Buchungen = new List<Buchung>();
+  private List<Buchung> Buchungen = new List<Buchung>();
+
+  public void AddBuchung(Buchung nb) {
+    try {
+      foreach(Buchung eb in Buchungen) {
+        if(
+          eb.Tag == nb.Tag &&
+          eb.Block == nb.Block &&
+          eb.Raum == nb.Raum
+        ) 
+        {
+          throw new Exception($"Am {nb.Tag}, Block {nb.Block}, ist {nb.Raum} bereits belegt.");
+        }
+      }
+      Buchungen.Add(nb);
+    } 
+    catch(Exception e) {
+      Console.WriteLine(e.Message);
+    }
+    finally {
+      Console.WriteLine($"Anzahl der Buchungen: {Buchungen.Count}");
+    }
+  }
 
   public override string ToString() {
     string ret = "";
