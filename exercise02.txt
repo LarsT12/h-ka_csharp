@@ -39,11 +39,10 @@ Aufg. 6
 Aufg. 7
   Prüfe beim Erzeugen einer Buchung, ob die Kapa des Raums zur Größe der Studiengruppe passt.
 
-Aufg. 8
-  Füge beim Erzeugen einer Buchung diese direkt dem Kalender hinzu.
+Aufg. 8 (Hausaufgabe statt Vorlesung 19.12.24)
+  Gib den Kalender Tages/Block-Tabelle mit Hilfe der überschriebenen (override) ToString-Methode aus und schreibe an die gebuchten Stellen die Raumnummer.
 
-Aufg. 9
-  Gib den Kalender Tages/Block-Tabelle aus und schreibe an die gebuchten Stellen die Raumnummer.
+Aufg. 9  
   Schreibe die Ausgabe in eine Datei.
 
 Aufg. x

@@ -13,7 +13,7 @@ class Raumplanung {
       Studiengruppe s1 = new Studiengruppe("ES01");
       s1.Groesse = 12;
       Studiengruppe s2 = new Studiengruppe("ABC01");
-      s2.Groesse = 24;
+      s2.Groesse = 20;
 
       Dozent d1 = new Dozent("UMU");
       Dozent d2 = new Dozent("LTH");
