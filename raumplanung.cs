@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 class Raumplanung {
   static void Main() {
@@ -8,7 +9,7 @@ class Raumplanung {
       Raum r1 = new Raum('E', "010");
       r1.Kapazitaet = 21;
 
-      Raum r2 = new Raum('E', "011", 17);
+      Raum r2 = new Raum('E', "011", 27);
 
       Studiengruppe s1 = new Studiengruppe("ES01");
       s1.Groesse = 12;
@@ -22,7 +23,7 @@ class Raumplanung {
       Vorlesung v2 = new Vorlesung("Inf", s2, d1);
 
       Buchung b1 = new Buchung("Do", 1, r1, v1);
-      Buchung b2 = new Buchung("Do", 1, r1, v2);
+      Buchung b2 = new Buchung("Do", 1, r2, v2);
       Buchung b3 = new Buchung("Fr", 2, r1, v2);
 
       Kalender k = new Kalender();
@@ -30,6 +31,7 @@ class Raumplanung {
       k.AddBuchung(b2);
       k.AddBuchung(b3);
       Console.WriteLine(k);
+      k.SpeichereKalenderInDatei();
     }
     catch(Exception e) {
       Console.WriteLine("Es ist ein Fehler aufgetreten:");
@@ -39,7 +41,7 @@ class Raumplanung {
 }
 
 class Kalender {
-  //private readonly string[] Tage = { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" };
+  private readonly string[] Tage = { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" };
   private List<Buchung> Buchungen = new List<Buchung>();
 
   public void AddBuchung(Buchung nb) {
@@ -64,11 +66,53 @@ class Kalender {
     }
   }
 
+  public void SpeichereKalenderInDatei() {
+    string dateiname = "Raumplanung.txt";
+    try {
+      File.WriteAllText(dateiname, ToString());
+      Console.WriteLine($"Kalender wurde erfolgreich in {dateiname} gespeichert.");
+    } catch (Exception ex) {
+      Console.WriteLine($"Fehler beim Speichern der Datei: {ex.Message}");
+    }
+}
+
   public override string ToString() {
     string ret = "";
+    string blocklabel = "Block ";
+    const int sp = -12; // Spaltenbreite für die Ausrichtung
+    string trennlinie = new string('-', (Tage.Length + 1) * (Math.Abs(sp) + 1)) + "\n";
 
-    foreach(Buchung b in Buchungen) {
-      ret += b + "\n";
+    // Kopfzeile mit Wochentagen
+    ret += $"{"", sp}|"; // Leerfeld für die Block-Beschriftung
+    foreach (string t in Tage) {
+      ret += $"{t, sp}|";
+    }
+    ret += "\n";
+    ret += trennlinie;
+
+    // Für jeden der 4 Zeitblöcke
+    for (int block = 1; block <= 4; block++) {
+      // Linke Spalte mit Block-Beschriftung
+      ret += $"{blocklabel + block, sp}|";
+
+      // Für jeden Wochentag
+      foreach (string tag in Tage) {
+        // Finde alle Buchungen für diesen Tag und Block
+        List<Buchung> buchungenAnTagUndBlock = Buchungen.FindAll(b => b.Tag == tag && b.Block == block);
+        // Sammle die Raumnummern
+        List<string> raumNummern = new List<string>();
+        foreach (Buchung b in buchungenAnTagUndBlock) {
+          raumNummern.Add($"{b.Raum.Gebaeude}{b.Raum.Nummer}");
+        }
+        // Erstelle eine kommagetrennte Liste der Raumnummern
+        string raeume = string.Join(",", raumNummern);
+        // Füge die Raumnummern zur Ausgabe hinzu, korrekt formatiert
+        ret += $"{raeume, sp}|";
+      }
+      ret += "\n"; // Zeilenumbruch nach jedem Zeitblock
+
+      // Linie unter dem aktuellen Block
+      ret += trennlinie;
     }
 
     return ret;
