@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 class Klausur2018WiSe {
   public static void Main() {
@@ -8,7 +9,9 @@ class Klausur2018WiSe {
     //aufg2b();
     //aufg2c();
     //aufg2d();
-    aufg2e();
+    //aufg2e();
+    //aufg3a();
+    aufg3b();
   }
 
   public struct Suchergebnis {
@@ -154,5 +157,62 @@ class Klausur2018WiSe {
 
     return ergebnis;
   }
+
+  public static void aufg3a() {
+    Console.WriteLine("Aufgabe 3a");
+    Schreibe("klausur_2018_wise.txt", 10);
+  }
+
+  public static void Schreibe(string dateiname, int breite) {
+    StreamWriter sw = null;
+
+    try {
+      sw = new StreamWriter(dateiname);
+
+      for(int z = 0; z < breite; ++z) {
+        for(int s = 0; s < breite; ++s) {
+          string x = (s - z) % 5 == 0 ? "+" : "_";
+          sw.Write(x);
+        }
+        if(z < breite - 1) sw.WriteLine();
+      }
+    } catch(IOException e) {
+      Console.WriteLine("Fehlermeldung: " + e.Message);
+    } finally {
+      if(sw != null) {
+        sw.Close();
+      }
+    }
+  }
+
+  public static void aufg3b() {
+    Console.WriteLine("Aufgabe 3b");
+    List<double> zs = ZeilenSumme("klausur_2018_wise_3b.txt");
+    foreach(double d in zs) {
+      Console.WriteLine(d);
+    }
+  }
+
+  public static List<double> ZeilenSumme(string dateiname) {
+    List<double> zs = new List<double>();
+    StreamReader sr = new StreamReader(dateiname);
+    string zeile;
+
+    while((zeile = sr.ReadLine()) != null) {
+      double summe = 0;
+      string[] elemente = zeile.Split(new char[]{':'});
+      foreach(string elem in elemente) {
+        double zahl;
+        if(double.TryParse(elem, out zahl)) {
+          summe += zahl;
+        }
+      }
+      zs.Add(summe);
+    }
+    sr.Close();
+
+    return zs;
+  }
+
 
 }
