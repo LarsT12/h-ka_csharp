@@ -1,4 +1,4 @@
-# Variablen
+# Variablendeklaration
 
 ## Aufg. 1
   Erstelle eine Klasse namens "Block" mit
