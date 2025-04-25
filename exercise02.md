@@ -24,3 +24,4 @@
   Analysiere, welche Variable j verwendet wird, die außerhalb der Main-Methode oder die innere?
   Setze für der inneren Variable j Kommentarzeichen, compilieren den Code neu und führe ihn aus.
   Was hat sich geändert?
+  Was passiert, wenn die innere Variable nicht deklariert wird, sondern nur einen Wert zugewiesen bekommt?
