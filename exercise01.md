@@ -2,8 +2,7 @@
 
 ## Aufg. 1
   Schreibe eine Klasse namens "Sequenz", die
-  3 Anweisungen als Sequenz ausführt.
-  
+  mehrere Ausgaben enthält, die als Sequenz deine Morgenroutine (Aufstehen, Duschen ...) beschreibt.
 
 ## Aufg. 2
   Schreibe eine Klasse namens "Selection", die
