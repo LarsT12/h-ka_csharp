@@ -73,4 +73,11 @@ class Strukturen {
 
   }
 
+  struct Nochwas {
+    public string Vorname;
+
+    public Nochwas(string Vorname) {
+      this.Vorname = Vorname;
+    }
+  }
 }
