@@ -19,6 +19,21 @@ class Temperaturen {
     double max = 21.5;
     Console.WriteLine($"Aufg. 4 → Anzahl Werte im Bereich von [{min:F1}, {max:F1}]: {AnzahlImBereich(temperaturen, min, max)}");
 
+    Console.WriteLine($"Aufg. 5 → Werte (sortiert) im Bereich von [{min:F1}, {max:F1}]:");
+    foreach(double d in WerteImBereich(temperaturen, min, max)) {
+      Console.WriteLine($"  {d:F1} °C");
+    }
+
+    Console.WriteLine($"Aufg. 6 → Werte im Original:");
+    foreach(double d in temperaturen) {
+      Console.WriteLine($"  {d:F1} °C");
+    }
+    Console.WriteLine($"Aufg. 6 → Werte sortiert und reduziert:");
+    SortiereUndReduziere(temperaturen);
+    foreach(double d in temperaturen) {
+      Console.WriteLine($"  {d:F1} °C");
+    }
+
   }
 
   static double Mittelwert(List<double> werte) {
@@ -77,12 +92,40 @@ class Temperaturen {
     if(daten == null || daten.Count == 0) throw new ArgumentException("Liste darf nicht leer sein.");
 
     int count = 0;
-    foreach (double d in daten) {
+    foreach(double d in daten) {
       if(d >= minWert && d <= maxWert) {
         count++;
       }
     }
     return count;
+  }
+
+  static List<double> WerteImBereich(List<double> daten, double minWert, double maxWert) {
+    if(daten == null || daten.Count == 0) throw new ArgumentException("Liste darf nicht leer sein.");
+
+    List<double> werte = new List<double>();
+
+    int count = 0;
+    foreach(double d in daten) {
+      if(d >= minWert && d <= maxWert) {
+        werte.Add(d);
+      }
+    }
+    werte.Sort();
+    return werte;
+  }
+
+  static void SortiereUndReduziere(List<double> daten) {
+    if(daten == null || daten.Count == 0) throw new ArgumentException("Liste darf nicht leer sein.");
+
+    daten.Sort();
+
+    int anzahl = daten.Count;
+    if(anzahl >= 3) {
+      daten.Remove(daten[anzahl - 1]);
+      daten.Remove(daten[0]);
+    }
+    
   }
 
 }
