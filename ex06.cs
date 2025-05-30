@@ -28,20 +28,49 @@ class Messdaten {
       new Messung(new DateTime(2025,  5, 12, 15,  0,  0), 25.8)
     };
     foreach(Messung m in messungen) {
-      Console.WriteLine($"Aufg. 3 → Messung vom {m.Zeitpunkt}: {m.Wert:F1}°C");
+      //Console.WriteLine($"Aufg. 3 → Messung vom {m.Zeitpunkt}: {m.Wert:F1}°C");
+      Console.WriteLine($"Aufg. 4 → {m}");
     }
 
+    Messung m3 = new Messung(new DateTime(2025, 5, 4, 8, 45, 0), 21.87);
+    m3.setWert(m3.getWert() + 1);
+    m3.Zeitpunkt = new DateTime(2025, 5, 5, 8, 45, 0);
+    Console.WriteLine($"\nAufg. 5 → {m3}");
   }
 
-  
   class Messung {
-    public DateTime Zeitpunkt;
-    public double Wert;
+    private static double DIFF = 273.15;
+    
+    private DateTime _Zeitpunkt;
+    public DateTime Zeitpunkt { 
+      get {
+        return _Zeitpunkt;
+      }
+
+      set {
+        if(value > DateTime.Now) {
+          throw new Exception($"{value} liegt in der Zukunft. Es sind nur Werte bis spätestens heute erlaubt!");
+        } else {
+          _Zeitpunkt = value;
+        }
+      }
+    }
+    private double _Wert;
+    public double getWert() {
+      return _Wert - DIFF;
+    }
+    public void setWert(double value) {
+      _Wert = value + DIFF;
+    }
 
     public Messung(DateTime zeitpunkt, double wert) {
       Zeitpunkt = zeitpunkt;
-      Wert = wert;
+      setWert(wert);
     }
 
+    public override string ToString() {
+      return $"Messung vom {Zeitpunkt}: {getWert():F1}°C";
+    }
   }
+
 }
