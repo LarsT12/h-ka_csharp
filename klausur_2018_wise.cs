@@ -15,7 +15,8 @@ class Klausur2018WiSe
     //aufg2b();
     //aufg2c();
     //aufg2d();
-    aufg2e();
+    //aufg2e();
+    aufg5a();
   }
 
   public static void aufg1a() {
@@ -197,7 +198,7 @@ class Klausur2018WiSe
 
       if(s.Preis > max) {
         max = s.Preis;
-        ergebnis.Clear(); // Durch Finden eines neuen Max-Preis werden alle bisherigen Ergebnisse ungültig
+        ergebnis.Clear(); // Durch Finden eines neuen Max-Preises werden alle bisherigen Ergebnisse ungültig
         ergebnis.Add(i); // Stattdessen neu gefundenes Element als Index hinzufügen
       } else if(s.Preis == max) {
         ergebnis.Add(i); // Weitere Treffer mit dem selben Max-Preis als Index hinzufügen
@@ -220,5 +221,117 @@ class Klausur2018WiSe
       Console.WriteLine(e);
     }
   }
+
+  public static void aufg5a() {
+    Kochbuch Lieblingsgerichte = new Kochbuch();
+    Lieblingsgerichte.Add("Eintopf", 70);
+    Lieblingsgerichte.Add("Pizza", 45);
+
+    Console.WriteLine("Anzahl: " + Lieblingsgerichte.Count);
+    Console.WriteLine(Lieblingsgerichte);
+  }
   
+}
+
+public class Rezept {
+  public string Name;
+
+  public int Kochdauer {
+    get { return _kochdauer; }
+    set {
+      if(value > 0) {
+        _kochdauer = value;
+      }
+    }
+  }
+  private int _kochdauer;
+
+  public bool DauertLang() {
+    return _kochdauer > 60;
+  }
+
+  public Rezept(string nm) {
+    Name = nm;
+    _kochdauer = 0;
+  }
+
+  public Rezept(string nm, int kd) {
+    Name = nm;
+    Kochdauer = kd;
+  }
+
+  public override string ToString() {
+    return "[Rezept Name = ]" +
+      Name + " Kochdauer = " +
+      _kochdauer + "]";
+  }
+}
+
+public class Kochbuch {
+  public List<Rezept> Rezepte;
+
+  public List<Rezept> LangeRezepte() {
+    List<Rezept> lrz = new List<Rezept>();
+
+    foreach(Rezept r in Rezepte) {
+      if(r.DauertLang()) {
+        lrz.Add(r);
+      }
+    }
+
+    return lrz;
+  }
+
+  public List<int> Finde(string nm) {
+    List<int> gefunden = new List<int>();
+
+    for(int i = 0; i < Rezepte.Count; ++i) {
+      if(Rezepte[i].Name == nm) {
+        gefunden.Add(i);
+      }
+    }
+
+    return gefunden;
+  }
+
+  public double DurchschnittsDauer() {
+    double s = 0.0;
+
+    foreach(Rezept r in Rezepte) {
+      s += r.Kochdauer;
+    }
+
+    return Count > 0 ? s / Count : 0.0;
+  }
+
+  public List<Rezept> MaxDauerRezepte() {
+    // siehe Aufgabe 2e, MaxPreisVon()
+    return null;
+  }
+
+  public override string ToString() {
+    string ret = "Rezepte:";
+
+    foreach(Rezept r in Rezepte) {
+      ret += "\n  " + r;
+    }
+
+    return ret;
+  }
+
+  public Kochbuch() {
+    Rezepte = new List<Rezept>();
+  }
+
+  public int Count {
+    get {
+      return Rezepte.Count;
+    }
+  }
+
+  public void Add(string nm, int dauer) {
+    var rz = new Rezept(nm, dauer);
+    Rezepte.Add(rz);
+  }
+
 }
