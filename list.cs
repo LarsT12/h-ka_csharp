@@ -48,7 +48,18 @@ class Temperaturen {
     Console.WriteLine($"Aufg. 2 → Mittelwert der Temperaturen: {avg:F1} °C");
     Console.WriteLine($"Aufg. 2 → Minimum der Temperaturen: {Minumum(temperaturen):F1} °C");
     Console.WriteLine($"Aufg. 2 → Maximum der Temperaturen: {Maximum(temperaturen):F1} °C");
+
+    Console.WriteLine("Vor dem Median");
+    foreach(double temp in temperaturen) {
+      Console.WriteLine($"{temp}°C");
+    }
+
     Console.WriteLine($"Aufg. 2 → Median der Temperaturen: {Median(temperaturen):F1} °C");
+
+    Console.WriteLine("Nach dem Median");
+    foreach(double temp in temperaturen) {
+      Console.WriteLine($"{temp}°C");
+    }
   }
 
   static double Mittelwert(List<double> werte) {
@@ -88,7 +99,9 @@ class Temperaturen {
   static double Median(List<double> daten) {
     if(daten == null || daten.Count == 0) throw new ArgumentException("Liste darf nicht leer sein.");
 
-    List<double> kopie = new List<double>(daten);
+    List<double> kopie = new List<double>(daten); // Kopie der Liste erzeugen, um das Original nicht zu verändern
+    List<double> kopie = daten; // Keine Kopie, sondern nur ein Alias für daten. Das Original wird verändert
+
     kopie.Sort();
 
     int n = kopie.Count;
