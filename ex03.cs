@@ -16,7 +16,7 @@ class Strukturen {
     if(vorname.Length > Kontakt.MaxVornameLaenge) {
       vorname = vorname.Substring(0, Kontakt.MaxVornameLaenge - 3) + "...";
     }
-    Kontakt b = new Kontakt(vorname, "Petersen", "p@p.com", "0989 24545", "Beispielweg 5, 54321 Beispielstadt");
+    Kontakt b = new Kontakt(vorname, "Petersen Petersen Petersen Petersen", "p@p.com", "0989 24545", "Beispielweg 5, 54321 Beispielstadt");
     Adressbuch.Add(b);
     // Console.WriteLine(b.ToString());
     b.Call();
@@ -48,7 +48,7 @@ class Kontakt {
     }
     set {
       if(value.Length > MaxNachnameLaenge) {
-        throw new ArgumentException($"Nachname darf maximal {MaxNachnameLaenge} Zeichen lang sein.");
+        throw new ArgumentException($"Der gewünschte Nachname '{value}' ist länger als die max. Länge von {MaxNachnameLaenge} Zeichen.");
         //_nachname = value.Substring(0, MaxNachnameLaenge - 3) + "...";
       } else {
         _nachname = value;
@@ -72,10 +72,10 @@ class Kontakt {
     return null;
   }
 
-  public Kontakt(string Vorname, string n, string m) {
+  public Kontakt(string Vorname, string Nachname, string Emailadresse) {
     this.Vorname = Vorname;
-    Nachname = n;
-    Emailadresse = m;
+    this.Nachname = Nachname;
+    this.Emailadresse = Emailadresse;
   }
   
   public Kontakt(string v, string n, string m, string t, string a) {
