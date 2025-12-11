@@ -16,7 +16,7 @@ class Strukturen {
     if(vorname.Length > Kontakt.MaxVornameLaenge) {
       vorname = vorname.Substring(0, Kontakt.MaxVornameLaenge - 3) + "...";
     }
-    Kontakt b = new Kontakt(vorname, "Petersen Petersen Petersen Petersen", "p@p.com", "0989 24545", "Beispielweg 5, 54321 Beispielstadt");
+    Kontakt b = new Kontakt(vorname, "Petersen", "pp.com", "0989 24545", "Beispielweg 5, 54321 Beispielstadt");
     Adressbuch.Add(b);
     // Console.WriteLine(b.ToString());
     b.Call();
@@ -26,7 +26,7 @@ class Strukturen {
     }
 
     b.SetNachname("NeuerNachname");
-    b.Nachname = "NochEinNeuerNachnameNochEinNeuerNachnameNochEinNeuerNachnameNochEinNeuerNachnameNochEinNeuerNachname";
+    b.Nachname = "NochEinNeuer";
     Console.WriteLine(b.Nachname);
     // Console.WriteLine($"Vorname: {Kontakt.FindByEmail(Adressbuch, "p@p.com").Vorname}");
   }
@@ -59,7 +59,20 @@ class Kontakt {
     _nachname = v;
   }
 
-  public string Emailadresse;
+  private string _emailadresse;
+  public string Emailadresse {
+    get {
+      return _emailadresse;
+    }
+    set {
+      if(value.Contains("@")) {
+        throw new ArgumentException($"Die E-Mail-Adresse '{value}' ist ungültig.");
+      } else {
+        _emailadresse = value;
+      }
+    }
+  }
+
   public string Telefonnummer;
   public string Adresse;
 
