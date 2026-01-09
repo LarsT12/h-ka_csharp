@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 
 class Probeklausur_2025WiSe {
+  // ProgI2025WSPK.pdf
+
   public static void Main() {
     Console.WriteLine("Hallo Probeklausur 2025 WiSe!");
     aufg1a();
