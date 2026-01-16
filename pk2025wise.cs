@@ -1,16 +1,52 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 class Probeklausur_2025WiSe {
   // ProgI2025WSPK.pdf
 
   public static void Main() {
     Console.WriteLine("Hallo Probeklausur 2025 WiSe!");
+    /*
     aufg1a();
     aufg1b();
     aufg1c();
     aufg1d();
     aufg1e();
+    */
+
+    // Aufgabe 2: Beispiel-Daten
+    List<Gemüse> gemuese = new List<Gemüse> {
+      new Gemüse("Karotte", 41, 120.5),
+      new Gemüse("Tomate", 18, 80.0),
+      new Gemüse("Tomate", 20, 95.0),
+      new Gemüse("Gurke", 16, 300.0),
+      new Gemüse("Tomate", 22, 110.0)
+    };
+
+    foreach(Gemüse g in gemuese) {
+      Console.WriteLine(g);
+    }
+
+    // Aufgabe 2b: Durchschnitt Kalorien für Gewicht > grenze
+    double ds = Gemüse.DSKal(gemuese, 90);
+    Console.WriteLine($"DSKal: {ds}");
+
+    // Aufgabe 2c: MaxGewicht für Namen
+    double maxTomate = Gemüse.MaxGewicht(gemuese, "Tomate");
+    Console.WriteLine($"MaxGewicht Tomate: {maxTomate}");
+
+    // Aufgabe 2d: AlleKalorien bei Gewicht <= maxgewicht
+    List<int> kalorienListe = Gemüse.AlleKalorien(gemuese, 100.0);
+    Console.WriteLine($"AlleKalorien bis 100g: {string.Join(", ", kalorienListe)}");
+
+    // Aufgabe 2e: Alle Elemente mit maximalem Gewicht und passendem Namen
+    List<Gemüse> schwersteTomaten = Gemüse.AlleMaxGewichtMit(gemuese, "Tomate");
+    Console.WriteLine("AlleMaxGewichtMit Tomate:");
+    foreach(Gemüse g in schwersteTomaten) {
+      Console.WriteLine($"  {g}");
+    }
+
   }
 
   /* Aufgabe 1a:
@@ -104,6 +140,84 @@ class Probeklausur_2025WiSe {
     }
 
     Console.WriteLine(sfeld.Count);
+  }
+
+}
+
+// Aufgabe 2a: Öffentliche Struktur Gemüse
+public struct Gemüse {
+  public string Name;
+  public int Kalorien;
+  public double Gewicht;
+
+  // Optionaler Konstruktor
+  public Gemüse(string name, int kalorien, double gewicht) {
+    Name = name;
+    Kalorien = kalorien;
+    Gewicht = gewicht;
+  }
+
+  // Optional: Überschreiben der ToString-Methode für bessere Ausgabe
+  public override string ToString() {
+    return $"{Name} ({Gewicht} g, {Kalorien} kcal)";
+  }
+
+  // Aufgabe 2b: Durchschnitt Kalorien für Gewicht > grenze
+  public static double DSKal(List<Gemüse> dasGemüse, int grenze) {
+    double summe = 0.0;
+    int anzahl = 0;
+
+    foreach(Gemüse g in dasGemüse) {
+      if(g.Gewicht > grenze) {
+        summe += g.Kalorien;
+        anzahl++;
+      }
+    }
+
+    return anzahl == 0 ? 0.0 : summe / anzahl;
+  }
+
+  // Aufgabe 2c: MaxGewicht für Namen
+  public static double MaxGewicht(List<Gemüse> dasGemüse, string name) {
+    double max = double.MinValue;
+
+    foreach(Gemüse g in dasGemüse) {
+      if(g.Name == name && g.Gewicht > max) {
+        max = g.Gewicht;
+      }
+    }
+
+    return max;
+  }
+
+  // Aufgabe 2d: AlleKalorien bei Gewicht <= maxgewicht
+  public static List<int> AlleKalorien(List<Gemüse> dasGemüse, double maxgewicht) {
+    List<int> kalorien = new List<int>();
+
+    foreach(Gemüse g in dasGemüse) {
+      if(g.Gewicht <= maxgewicht) {
+        kalorien.Add(g.Kalorien);
+      }
+    }
+
+    return kalorien;
+  }
+
+  // Aufgabe 2e: Alle Elemente mit maximalem Gewicht und passendem Namen
+  public static List<Gemüse> AlleMaxGewichtMit(List<Gemüse> dasGemüse, string name) {
+    List<Gemüse> ergebnis = new List<Gemüse>();
+    double max = MaxGewicht(dasGemüse, name);
+    if(max == double.MinValue) {
+      return ergebnis;
+    }
+
+    foreach(Gemüse g in dasGemüse) {
+      if(g.Name == name && g.Gewicht == max) {
+        ergebnis.Add(g);
+      }
+    }
+
+    return ergebnis;
   }
 
 }
