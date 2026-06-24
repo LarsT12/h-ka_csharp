@@ -2,8 +2,15 @@ using System;
 
 class Aufgabe11 {
   static void Main(string[] args) {
-    Geldbörse g1 = new Geldbörse("Geldbörse 1");
+    Geldbörse g1 = new Geldbörse("Lars' Geldbörse");
     Geldbörse g2 = new Geldbörse("Geldbörse 2");
+    Geldbörse[] geldbörsen = new Geldbörse[5];
+
+    geldbörsen[0] = g1;
+    geldbörsen[1] = g2;
+    geldbörsen[2] = new Geldbörse("Geldbörse 3");
+    geldbörsen[3] = new Geldbörse("Geldbörse 4");
+    geldbörsen[4] = new Geldbörse("Geldbörse 5");
 
     Console.WriteLine(g1);
     g1.GeldbörseFüllen(2000);
@@ -11,6 +18,9 @@ class Aufgabe11 {
 
     Console.WriteLine(g2);
     g2.GeldbörseFüllen(3000);
+    Console.WriteLine(g2);
+    int entnommenerBetrag = 200;
+    g2.GeldbörseLeeren(ref entnommenerBetrag);
     Console.WriteLine(g2);
   }
 
