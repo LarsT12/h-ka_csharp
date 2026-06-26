@@ -4,8 +4,11 @@ class AufgabeStruct02Teil01 {
   static void Main(string[] args) {
     Console.WriteLine("Aufgabe Struct 02 - Teil 01");
 
-    Sitzplatz platz = new Sitzplatz("Standard", 900, false);
-    Console.WriteLine(platz);
+    Sitzplatz platz1 = new Sitzplatz("Standard", 900, false);
+    Console.WriteLine(platz1);
+
+    Sitzplatz platz2 = new Sitzplatz("Loge", 1200, true);
+    Console.WriteLine(platz2);
   }
 
   struct Sitzplatz {
@@ -29,7 +32,12 @@ class AufgabeStruct02Teil01 {
       _reserviertFuer = "";
     }
 
+/*
+    public string Print()
+      => $"{_kategorie}, {_preisInCent / 100.0:C}, {(_hatGetraenkehalter ? "mit" : "ohne")} Getränkehalter, {(_istReserviert ? $"reserviert für {_reserviertFuer}" : "frei")}";      
+*/
     public override string ToString()
       => $"{_kategorie}, {_preisInCent / 100.0:C}, {(_hatGetraenkehalter ? "mit" : "ohne")} Getränkehalter, {(_istReserviert ? $"reserviert für {_reserviertFuer}" : "frei")}";
+
   }
 }

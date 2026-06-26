@@ -5,6 +5,14 @@ class AufgabeStruct02Teil03 {
     Console.WriteLine("Aufgabe Struct 02 - Teil 03");
 
     Sitzplatz[,] saal = new Sitzplatz[5, 8];
+    Console.WriteLine(saal.Length);
+
+    // Beispiel für ein eindim. Array
+    string[] x = new string[5];
+    Console.WriteLine(x.Length);
+    for (int i = 0; i < x.Length; i++) {
+      x[i] = "";
+    }
 
     for (int reihe = 0; reihe < saal.GetLength(0); reihe++) {
       for (int platz = 0; platz < saal.GetLength(1); platz++) {

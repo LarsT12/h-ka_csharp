@@ -153,3 +153,19 @@ Wenn du nicht weiterkommst oder deinen Stand vergleichen möchtest, nutze die Mu
 
 `aufg_struct_02_Teil_04.cs`
 
+## Teil 5: Einen Kinosaal beschreiben
+
+Bisher haben wir den Kinosaal über ein zweidimensionales Array abgebildet.
+Eigenschaften und Verhalten des ganzen Saals, wie z.B. die Anzahl an freien Plätzen, wurden in Teil 4 über statische Methode bereitgestellt.
+
+Erstelle nun eine ```struct Saal``` mit folgendem:
+- Sie soll unser zweidimensionales Array der Plätze enhalten. Nenne die bisherige Variable ```saal```entspr. in ```plätze```um und lass sie Teil der Struct *saal* werden.
+- Sie soll mit Hilfe des Konstruktors das Initialisieren des Saals durchführen, siehe Methode ```InitialisiereSaal()```.
+- Die bisherigen Methoden, die ein Sitzplatz bereitstellt, wie z.B. das Reservieren, müssen so umgestaltet sein, über die Struct Saal erreichbar sind und dass sie die Position des Sitzplatzes als Parameter mitgeben.
+- Sie soll die in Teil 4 erstellten statischen Methoden, die uns Eigenschaften des Saals liefern, implementieren.
+
+Erstelle mind. einen Saal, gerne auch ein Array ```Saal[]```, um gleich mehrere zu erstellen.
+
+Wenn du nicht weiterkommst oder deinen Stand vergleichen möchtest, nutze die Musterlösung:
+
+`aufg_struct_02_Teil_05.cs`
