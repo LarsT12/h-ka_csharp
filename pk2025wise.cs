@@ -47,6 +47,11 @@ class Probeklausur_2025WiSe {
       Console.WriteLine($"  {g}");
     }
 
+    // Aufgabe 3: Dateien
+    Schreiben("ausgabe.txt", 10);
+    List<string> uids = Lesen("eingabe.txt", 7);
+    Console.WriteLine(string.Join(", ", uids));
+
   }
 
   /* Aufgabe 1a:
@@ -140,6 +145,77 @@ class Probeklausur_2025WiSe {
     }
 
     Console.WriteLine(sfeld.Count);
+  }
+
+  /* Aufgabe 3a:
+    Schreibt ein Muster in eine Textdatei. Breite == Höhe.
+  */
+  public static void Schreiben(string pfad, int höhe) {
+    char[] basis = { '_', '.', ';' };
+
+    try {
+      using(StreamWriter writer = new StreamWriter(pfad)) {
+        for(int r = 0; r < höhe; r++) {
+          char[] zeile = new char[höhe];
+          for(int c = 0; c < höhe; c++) {
+            char ch = basis[(r + c) % basis.Length];
+            if(c == r || c == höhe - 1 - r) {
+              ch = 'O';
+            }
+            zeile[c] = ch;
+          }
+          writer.WriteLine(new string(zeile));
+        }
+      }
+    } catch(IOException) {
+      Console.WriteLine("Fehler beim Schreiben");
+    } catch(Exception ex) {
+      Console.WriteLine(ex.Message);
+    }
+  }
+
+  /* Aufgabe 3b:
+    Liest UIDs aus einer Textdatei, wenn die Summen >= grenze sind.
+  */
+  public static List<string> Lesen(string path, int grenze) {
+    List<string> result = new List<string>();
+
+    try {
+      foreach(string raw in File.ReadLines(path)) {
+        string line = raw.Trim();
+        if(string.IsNullOrEmpty(line) || line.StartsWith("#")) {
+          continue;
+        }
+
+        string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if(parts.Length < 2) {
+          continue;
+        }
+
+        string uid = parts[0];
+        string sumPart = parts[1];
+
+        string[] nums = sumPart.Split('+', StringSplitOptions.RemoveEmptyEntries);
+        int total = 0;
+        bool ok = true;
+        foreach(string n in nums) {
+          if(int.TryParse(n, out int value)) {
+            total += value;
+          } else {
+            ok = false;
+            break;
+          }
+        }
+
+        if(ok && total >= grenze) {
+          result.Add(uid);
+        }
+      }
+    } catch(Exception ex) {
+      Console.WriteLine(ex.Message);
+    }
+
+    return result;
   }
 
 }
